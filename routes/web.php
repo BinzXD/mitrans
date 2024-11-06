@@ -16,22 +16,43 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('admin', function() {
-    return 'Hi admin';
-})->middleware('role:admin');
+// Route::get('admin', function() {
+//     return 'Hi admin';
+// })->middleware('role:admin');
 
-Route::get('user', function() {
-    return 'Hi user';
-})->middleware('role:user');
+// Route::get('user', function() {
+//     return 'Hi user';
+// })->middleware('role:user');
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+
+
+Route::redirect('/', '/prototype/dashboard');
+Route::prefix('prototype')->group(function () {
+    route::get('/login', function () {
+        return Inertia::render('Prototype/Login');
+    })->name('login');
+
+    route::get('/register', function () {
+        return Inertia::render('Prototype/Register');
+    })->name('register');
+
+    route::get('/dashboard', function () {
+        return Inertia::render('Prototype/Dashboard');
+    })->name('dashboard');
+
+    route::get('/subcribe', function () {
+        return Inertia::render('Prototype/Subcribe');
+    })->name('subcribe');
 });
+
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
