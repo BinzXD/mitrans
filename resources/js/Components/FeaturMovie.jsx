@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 export default function FeaturMovie({
     slug,
     name,
@@ -39,7 +40,7 @@ export default function FeaturMovie({
                         <img src="/icons/ic_play.svg" width="50" alt="" />
                     </div>
                 </div>
-                <a href={slug} className="inset-0 absolute z-50"></a>
+                <Link href={`/prototype/movie/${slug}`} className="inset-0 absolute z-50"></Link>
             </div>
         </>
     );

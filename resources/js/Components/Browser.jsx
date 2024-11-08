@@ -22,7 +22,7 @@ export default function Browser({ name, category, slug, thumbnail }) {
                                 -translate-x-1/2 z-20 transition ease-in-out duration-500"
                 >
                     <img
-                        src="assets/icons/ic_play.svg"
+                        src="/icons/ic_play.svg"
                         className=""
                         width="50"
                         alt=""

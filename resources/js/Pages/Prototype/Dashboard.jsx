@@ -43,7 +43,7 @@ export default function Dashboard() {
             </div>
 
             <div className="mt-5">
-                    <div class="font-semibold text-[22px] text-black mb-4">Browse</div>
+                    <div className="font-semibold text-[22px] text-black mb-4">Browse</div>
                     <Flickity   className="gap-[30px] __scroll-selector"
                     options={flickityOptions}>
                          {[1, 2, 3, 4, 5].map((i) => (
