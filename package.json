@@ -23,6 +23,7 @@
     "dependencies": {
         "@tsparticles/react": "^3.0.0",
         "react-flickity-component": "^4.0.7",
+        "react-player": "^2.16.0",
         "tsparticles-slim": "^2.12.0"
     }
 }
