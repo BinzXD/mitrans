@@ -27,7 +27,7 @@ export default function Input({
     autoComplete,
     required,
     isFocused,
-    handleChange = () => {},  // Default to no-op function
+    onChange,  
     placeholder,
     isEror,
 }) {
@@ -50,7 +50,7 @@ export default function Input({
                 ref={input}
                 autoComplete={autoComplete}
                 required={required}
-                onChange={(e) => handleChange(e)}
+                onChange={onChange}
                 placeholder={placeholder}
             />
         </div>

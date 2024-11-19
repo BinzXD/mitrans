@@ -26,14 +26,14 @@ use Inertia\Inertia;
 
 
 
-Route::redirect('/', '/prototype/dashboard');
+Route::redirect('/', '/prototype/login');
 Route::prefix('prototype')->group(function () {
     route::get('/login', function () {
         return Inertia::render('Prototype/Login');
     })->name('login');
 
     route::get('/register', function () {
-        return Inertia::render('Prototype/Register');
+        return Inertia::render('Auth/Register');
     })->name('register');
 
     route::get('/dashboard', function () {
