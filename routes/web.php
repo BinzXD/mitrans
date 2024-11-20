@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,11 +27,17 @@ use Inertia\Inertia;
 
 
 
-Route::redirect('/', '/prototype/login');
+Route::redirect('/', '/login');
+route::get('/login', function () {
+    return Inertia::render('Auth/Login');
+})->name('login');
+
+Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashboard')->group(function() {
+    Route::get('/user', [DashboardController::class, 'index'])->name('dashboarddd');
+});
+
+
 Route::prefix('prototype')->group(function () {
-    route::get('/login', function () {
-        return Inertia::render('Prototype/Login');
-    })->name('login');
 
     route::get('/register', function () {
         return Inertia::render('Auth/Register');
@@ -49,18 +56,11 @@ Route::prefix('prototype')->group(function () {
     })->name('details');
 });
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

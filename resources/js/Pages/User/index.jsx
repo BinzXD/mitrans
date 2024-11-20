@@ -1,10 +1,10 @@
-import Auth from "./Auth";
+import Auth from "@/Pages/Prototype/Auth";
 import Flickity from "react-flickity-component";
 import { Head } from "@inertiajs/react";
 import FeaturMovie from "@/Components/FeaturMovie";
 import Browser from "@/Components/Browser";
 
-export default function Dashboard({ auth }) {
+export default function index({ features, movies, auth }) {
     const flickityOptions = {
         cellAlign: "left",
         contain: true,
@@ -14,6 +14,7 @@ export default function Dashboard({ auth }) {
         prevNextButtons: false,
         draggable: ">1",
     };
+    console.log(features);
     return (
         <Auth coba={auth}>
             <Head title="Dashboard">
@@ -30,13 +31,14 @@ export default function Dashboard({ auth }) {
                     className="gap-[30px] __scroll-selector"
                     options={flickityOptions}
                 >
-                    {[1, 2, 3].map((i) => (
-                        <FeaturMovie key={i}
-                        slug="batman-vs-superman"
-                        name={`The Batman vs Superman`}
-                        thumbnail="/images/featured-1.png"
-                        category="actions"
-                        rating={3}/>
+                    {features.map((features) => (
+                        <FeaturMovie 
+                        key={features.id}
+                        slug={features.slug}
+                        name={features.name}
+                        thumbnail={features.thumbnail}
+                        category={features.category}
+                        rating={features.rating}/>
                        
                     ))}
                 </Flickity>
@@ -46,11 +48,11 @@ export default function Dashboard({ auth }) {
                     <div className="font-semibold text-[22px] text-black mb-4">Browse</div>
                     <Flickity   className="gap-[30px] __scroll-selector"
                     options={flickityOptions}>
-                         {[1, 2, 3, 4, 5].map((i) => (
-                            <Browser key={i} slug="the-minions"
-                            name={`The Minions 2`}
-                            category="Cartoon"
-                            thumbnail="/images/browse-1.png"
+                         {movies.map((movies) => (
+                            <Browser key={movies.id} slug={movies.slug}
+                            name={movies.name}
+                            category={movies.category}
+                            thumbnail={movies.thumbnail}
                             />
                         
                     ))}

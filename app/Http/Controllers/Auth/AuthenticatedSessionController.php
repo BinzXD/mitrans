@@ -34,7 +34,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Ambil role user setelah login
+    $role = auth()->user()->role->name ?? null;
+
+    // Redirect berdasarkan role
+    if ($role === 'admin') {
+        return redirect()->intended(RouteServiceProvider::HOME); // Redirect ke home jika admin
+    }
+
+    if ($role === 'user') {
+        return redirect()->intended(RouteServiceProvider::USER);
+    }
+
+        return redirect()->route('login');
     }
 
     /**
