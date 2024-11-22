@@ -40,7 +40,7 @@ export default function FeaturMovie({
                         <img src="/icons/ic_play.svg" width="50" alt="" />
                     </div>
                 </div>
-                <Link href={`/prototype/movie/${slug}`} className="inset-0 absolute z-50"></Link>
+                <Link href={route("user.dashboardshow", slug)} className="inset-0 absolute z-50"></Link>
             </div>
         </>
     );

@@ -19,4 +19,11 @@ class DashboardController extends Controller
             'movies' => $movies,
         ]);
     }
+
+    public function detail(Movie $movie)
+    {
+        return Inertia::render('User/show', [
+            'data' => $movie,
+        ]);
+    }
 }

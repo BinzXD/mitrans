@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\SubcriberController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,7 +34,10 @@ route::get('/login', function () {
 })->name('login');
 
 Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashboard')->group(function() {
-    Route::get('/user', [DashboardController::class, 'index'])->name('dashboarddd');
+    Route::get('/user', [DashboardController::class, 'index'])->name('dasuser');
+    Route::get('/movie/{movie:slug}', [DashboardController::class, 'detail'])->name('show');
+    Route::get('/subcribers', [SubcriberController::class, 'index'])->name('subcriber');
+    Route::post('/subcribers/{subcriptionPlan}/user-subcriber', [SubcriberController::class, 'subcriber'])->name('subcriberuser');
 });
 
 

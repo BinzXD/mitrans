@@ -14,7 +14,6 @@ export default function index({ features, movies, auth }) {
         prevNextButtons: false,
         draggable: ">1",
     };
-    console.log(features);
     return (
         <Auth coba={auth}>
             <Head title="Dashboard">

@@ -5,7 +5,7 @@ export default function Auth({coba, children }) {
         <>
             <div className="mx-auto max-w-screen hidden lg:block">
                 {/* <!-- START: Sidebar --> */}
-                <SideBar />
+                <SideBar auth={coba}/>
                 {/* <!-- END: Sidebar -->
 
         <!-- START: Content --> */}
