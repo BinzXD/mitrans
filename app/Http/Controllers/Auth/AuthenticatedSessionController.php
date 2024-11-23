@@ -34,17 +34,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // Ambil role user setelah login
-    $role = auth()->user()->role->name ?? null;
 
-    // Redirect berdasarkan role
-    if ($role === 'admin') {
-        return redirect()->intended(RouteServiceProvider::HOME); // Redirect ke home jika admin
-    }
+        $role = auth()->user()->role->name ?? null;
 
-    if ($role === 'user') {
-        return redirect()->intended(RouteServiceProvider::USER);
-    }
+        // Redirect berdasarkan role
+        if ($role === 'admin') {
+            return redirect()->intended(RouteServiceProvider::HOME); // Redirect ke home jika admin
+        }
+
+        if ($role === 'user') {
+            $user = auth()->user(); 
+            return redirect()->route('user.dashboarddasuser', ['user' => $user->name]);
+        }
 
         return redirect()->route('login');
     }

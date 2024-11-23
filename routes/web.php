@@ -34,10 +34,10 @@ route::get('/login', function () {
 })->name('login');
 
 Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashboard')->group(function() {
-    Route::get('/user', [DashboardController::class, 'index'])->name('dasuser');
-    Route::get('/movie/{movie:slug}', [DashboardController::class, 'detail'])->name('show');
+    Route::get('/movie/{movie:slug}', [DashboardController::class, 'detail'])->name('show')->middleware('checksubcription');
     Route::get('/subcribers', [SubcriberController::class, 'index'])->name('subcriber');
     Route::post('/subcribers/{subcriptionPlan}/user-subcriber', [SubcriberController::class, 'subcriber'])->name('subcriberuser');
+    Route::get('/{user:name}', [DashboardController::class, 'index'])->name('dasuser');
 });
 
 
@@ -51,9 +51,9 @@ Route::prefix('prototype')->group(function () {
         return Inertia::render('Prototype/Dashboard');
     })->name('dashboard');
 
-    route::get('/subcribe', function () {
-        return Inertia::render('Prototype/Subcribe');
-    })->name('subcribe');
+    // route::get('/subcribe', function () {
+    //     return Inertia::render('Prototype/Subcribe');
+    // })->name('subcribe');
 
     route::get('/movie/{slug}', function() {
         return Inertia::render('Prototype/Details');

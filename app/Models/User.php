@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function getActive()
     {
-        $lastActive = $this->lastActive();
+        $lastActive = $this->lastActive()->first();
         if (!$lastActive || !$lastActive->expired_date) {
             return false;
         }
