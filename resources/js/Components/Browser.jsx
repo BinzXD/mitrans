@@ -28,7 +28,7 @@ export default function Browser({ name, category, slug, thumbnail }) {
                         alt=""
                     />
                 </div>
-                <a href={slug} className="inset-0 absolute z-50"></a>
+                <a href={route("user.dashboardshow", slug)} className="inset-0 absolute z-50"></a>
             </div>
         </>
     );

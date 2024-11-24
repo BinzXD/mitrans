@@ -1,17 +1,17 @@
 import SideBar from "@/Layouts/SideBar";
 import TopBar from "@/Layouts/TopBar";
-export default function Auth({ children }) {
+export default function Auth({coba, children }) {
     return (
         <>
             <div className="mx-auto max-w-screen hidden lg:block">
                 {/* <!-- START: Sidebar --> */}
-                <SideBar />
+                <SideBar auth={coba}/>
                 {/* <!-- END: Sidebar -->
 
         <!-- START: Content --> */}
                 <div className="ml-[300px] px-[50px]">
                     <div className="py-10 flex flex-col gap-[50px]">
-                        <TopBar />
+                        <TopBar name={coba.user.name}/>
                         <main>{children}</main>
                     </div>
                 </div>

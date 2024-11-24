@@ -4,7 +4,7 @@ import { Head } from "@inertiajs/react";
 import FeaturMovie from "@/Components/FeaturMovie";
 import Browser from "@/Components/Browser";
 
-export default function Dashboard() {
+export default function Dashboard({ auth }) {
     const flickityOptions = {
         cellAlign: "left",
         contain: true,
@@ -15,7 +15,7 @@ export default function Dashboard() {
         draggable: ">1",
     };
     return (
-        <Auth>
+        <Auth coba={auth}>
             <Head title="Dashboard">
                 <link
                     rel="stylesheet"

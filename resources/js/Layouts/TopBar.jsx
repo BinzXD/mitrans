@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { useState, useRef } from "react";
 
-export default function TopBar() {
+export default function TopBar({name}) {
     const [dropdownOpen, setDropdownOpen] = useState(true);
     const dropdownTarget = useRef(null);
 
@@ -23,7 +23,7 @@ export default function TopBar() {
             />
             <div className="flex items-center gap-4">
                 <span className="text-black text-sm font-medium">
-                    Welcome, Granola Sky
+                    Welcome, {name}
                 </span>
                 <div className="collapsible-dropdown flex flex-col gap-2 relative">
                     <a
@@ -41,13 +41,13 @@ export default function TopBar() {
                         ref={dropdownTarget}
                         className="bg-white rounded-2xl text-black font-medium flex flex-col gap-1 absolute z-[999] right-0 top-[80px] min-w-[180px] hidden overflow-hidden"
                     >
-                        <a href="#!" className="transition-all hover:bg-sky-100 p-4">
+                        <Link href={route('user.dashboarddasuser', { user: name })}  className="transition-all hover:bg-sky-100 p-4">
                             Dashboard
-                        </a>
-                        <a href="#!" className="transition-all hover:bg-sky-100 p-4">
+                        </Link>
+                        <a href="" className="transition-all hover:bg-sky-100 p-4">
                             Settings
                         </a>
-                        <Link href="/prototype/login" className="transition-all hover:bg-sky-100 p-4">
+                        <Link href={route('logout')} className="transition-all hover:bg-sky-100 p-4" method="post" >
                             Sign Out
                         </Link>
                     </div>
