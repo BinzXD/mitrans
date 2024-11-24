@@ -36,10 +36,10 @@ class AuthenticatedSessionController extends Controller
 
 
         $role = auth()->user()->role->name ?? null;
-
+        
         // Redirect berdasarkan role
         if ($role === 'admin') {
-            return redirect()->intended(RouteServiceProvider::HOME); // Redirect ke home jika admin
+            return redirect()->route('admin.dashboardmovie.index'); // Redirect ke home jika admin
         }
 
         if ($role === 'user') {

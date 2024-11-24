@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\SubcriberController;
@@ -40,6 +41,10 @@ Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashbo
     Route::get('/{user:name}', [DashboardController::class, 'index'])->name('dasuser');
 });
 
+Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->name('admin.dashboard')->group(function() {
+    Route::resource('/admin/movie', DashboardAdminController::class);
+});
+
 
 Route::prefix('prototype')->group(function () {
 
@@ -62,9 +67,6 @@ Route::prefix('prototype')->group(function () {
 
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'role:admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

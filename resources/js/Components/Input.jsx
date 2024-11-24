@@ -14,7 +14,7 @@ Input.propTypes = {
     isFocused: PropTypes.bool,
     handleChange: PropTypes.func,
     placeholder: PropTypes.string,
-    isEror: PropTypes.bool,
+    isError: PropTypes.bool,
 };
 
 export default function Input({
@@ -22,14 +22,14 @@ export default function Input({
     name,
     value,
     defaultValue,
-    className = "",  // Default to empty string
+    className = "", // Default to empty string
     variant = "primary",
     autoComplete,
     required,
     isFocused,
-    onChange,  
+    onChange,
     placeholder,
-    isEror,
+    isError,
 }) {
     const input = useRef();
 
@@ -46,13 +46,18 @@ export default function Input({
                 name={name}
                 value={value}
                 defaultValue={defaultValue}
-                className={`rounded-2xl bg-form-bg py-[13px] px-7 w-full ${isEror ? "input-error" : ""} ${variant ? `input-${variant}` : ""} ${className}`}
+                className={`rounded-2xl bg-form-bg py-[13px] px-7 w-full ${
+                    isError ? "input-error" : ""
+                } ${variant ? `input-${variant}` : ""} ${className}`}
                 ref={input}
                 autoComplete={autoComplete}
                 required={required}
                 onChange={onChange}
                 placeholder={placeholder}
             />
+            {isError && (
+                <span className="text-sm text-red-500 mt-1">{isError}</span>
+            )}
         </div>
     );
 }
