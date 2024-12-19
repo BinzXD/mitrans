@@ -16,7 +16,8 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/index');
+        $movie = Movie::all();
+        return Inertia::render('Admin/index')->with('movie', $movie);
     }
 
     /**
@@ -47,7 +48,10 @@ class DashboardAdminController extends Controller
         try {
             $Movie = new Movie($data);
             $Movie->save();
-            return redirect()->route('admin.dashboardmovie.index');
+            return redirect()->route('admin.dashboardmovie.index')->with([
+                'success' => 'Movie created successfully',
+                'type' => 'success'
+            ]);
         } catch (\Throwable $th) {
             \Log::error('Error creating movie: ' . $th->getMessage(), [
                 'trace' => $th->getTraceAsString(),
